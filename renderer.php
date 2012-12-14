@@ -18,10 +18,9 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     
     public function document_start(){
         global $conf;
-        global $lang;
         
         $this->doc .= '<!DOCTYPE html>
-            <html lang="'.$conf['lang'].'" dir="'.$lang['direction'].'">
+            <html lang="'.$conf['lang'].'">
             <head>
                 <meta name="viewport" content="width=1024" />
                 <meta charset="utf-8" />
@@ -62,9 +61,12 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
         $this->php($text, 'pre');
     }
     public function header($text, $level, $pos) {
+        global $lang;
+        
         $this->data_x += 1000;
         $this->doc .= "<div class='".($level == 1 ? '' : 'slide ')."step' ";
-        $this->doc .= "data-x='$this->data_x' data-y='$this->data_y'>";
+        $this->doc .= "data-x='$this->data_x' data-y='$this->data_y' ";
+        $this->doc .= "dir='".$lang['direction']."' >";
         $this->doc .= "<h$level>$text</h$level>";
     }
 }
