@@ -17,13 +17,21 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     private $data_y = 0;
     
     public function document_start(){
+        global $conf;
+        global $lang;
+        
         $this->doc .= '<!DOCTYPE html>
-        <html>
+            <html lang="'.$conf['lang'].'" dir="'.$lang['direction'].'">
             <head>
                 <meta name="viewport" content="width=1024" />
                 <meta charset="utf-8" />
+                <title>'.hsc($title).'</title>
                 
-                 <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
+                <meta name="generator" content="impress.js" />
+                <meta name="version" content="impress.js ab44798b081997319f4207dabbb052736acfc512
+" />
+                
+                <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
             </head>
         <body>
         <div id="impress">';
