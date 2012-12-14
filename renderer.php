@@ -11,7 +11,6 @@ if (!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
 
 // we inherit from the XHTML renderer instead directly of the base renderer
 require_once DOKU_INC.'inc/parser/xhtml.php';
-require_once DOKU_INC.'inc/template.php';
 
 class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     private $data_x = 0;
@@ -25,23 +24,21 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
                 <meta charset="utf-8" />
                 
                  <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
-            </head>'.///tpl_metaheaders(false).'
-        '<body>
-        <div id="impress"><div class="step">';
+            </head>
+        <body>
+        <div id="impress">';
     }
+    
     public function document_end(){
         $this->doc .= '</div>
-            <script src="'.DOKU_BASE.'lib/plugins/impressjs/impress.js"></script>
-            <script>impress().init();</script></body></html>';
+        <script src="'.DOKU_BASE.'lib/plugins/impressjs/impress.js"></script>
+        <script>impress().init();</script></body></html>';
     }
-    function section_open($level) {
-        $this->doc .= '';
+    public function section_close() {
+        $this->doc .= "</div>";
+        parent::section_close();
     }
-    function section_close() {
-        $this->data_x += 1000;
-        $this->doc .= '</div><div class="step slide" data-x="'.$this->data_x.'" data-y="'.$this->data_y.'">';
-    }
-        function php($text, $wrapper='code') {
+    public function php($text, $wrapper='code') {
         global $conf;
 
         if($conf['phpok']){
@@ -53,7 +50,13 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
           $this->doc .= p_xhtml_cached_geshi($text, 'php', $wrapper);
         }
     }
-        function phpblock($text) {
+    public function phpblock($text) {
         $this->php($text, 'pre');
+    }
+    public function header($text, $level, $pos) {
+        $this->data_x += 1000;
+        $this->doc .= "<div class='".($level == 1 ? '' : 'slide ')."step' ";
+        $this->doc .= "data-x='$this->data_x' data-y='$this->data_y'>";
+        $this->doc .= "<h$level>$text</h$level>";
     }
 }
