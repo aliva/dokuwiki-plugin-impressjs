@@ -1,0 +1,14 @@
+pre {
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 0.5em #CCCCCC inset;
+    overflow: auto;
+    padding: 0.2em;
+    word-wrap: normal;
+}
+pre, code, samp, kbd {
+    background-color: #FBFAF9;
+    color: #333333;
+    direction: ltr;
+    text-align: left;
+}

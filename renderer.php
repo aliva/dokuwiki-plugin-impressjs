@@ -20,20 +20,21 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
         global $conf;
         
         $this->doc .= '<!DOCTYPE html>
-            <html lang="'.$conf['lang'].'">
-            <head>
-                <meta name="viewport" content="width=1024" />
-                <meta charset="utf-8" />
-                <title>'.hsc($title).'</title>
+<html lang="'.$conf['lang'].'">
+<head>
+    <meta name="viewport" content="width=1024" />
+    <meta charset="utf-8" />
+    <title>'.hsc($title).'</title>
                 
-                <meta name="generator" content="impress.js" />
-                <meta name="version" content="impress.js ab44798b081997319f4207dabbb052736acfc512
-" />
+    <meta name="generator" content="impress.js" />
+    <meta name="version" content="impress.js ab44798b081997319f4207dabbb052736acfc512" />
                 
-                <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
-            </head>
-        <body>
-        <div id="impress">';
+    <link rel="stylesheet" href="'.DOKU_BASE.'lib/styles/screen.css" type="text/css" media="screen" />
+    <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
+    <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress-extra.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="impress">';
     }
     
     public function document_end(){
