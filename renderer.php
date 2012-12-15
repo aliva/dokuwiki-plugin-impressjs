@@ -50,7 +50,9 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     public function header($text, $level, $pos) {
         global $lang;
         
-        $this->data_x += 1000;
+        $this->data_x += $this->getConf('data-x');
+        $this->data_y += $this->getConf('data-y');
+        
         $this->doc .= "<div class='".($level == 1 ? '' : 'slide ')."step' ";
         $this->doc .= "data-x='$this->data_x' data-y='$this->data_y' ";
         $this->doc .= "dir='".$lang['direction']."' >";
