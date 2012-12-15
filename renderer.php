@@ -46,21 +46,6 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
         $this->doc .= "</div>";
         parent::section_close();
     }
-    public function php($text, $wrapper='code') {
-        global $conf;
-
-        if($conf['phpok']){
-          ob_start();
-          eval($text);
-          $this->doc .= ob_get_contents();
-          ob_end_clean();
-        } else {
-          $this->doc .= p_xhtml_cached_geshi($text, 'php', $wrapper);
-        }
-    }
-    public function phpblock($text) {
-        $this->php($text, 'pre');
-    }
     public function header($text, $level, $pos) {
         global $lang;
         
