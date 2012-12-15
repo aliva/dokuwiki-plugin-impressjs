@@ -15,6 +15,7 @@ require_once DOKU_INC.'inc/parser/xhtml.php';
 class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     private $data_x = 0;
     private $data_y = 0;
+    private $data_z = 0;
     
     public function document_start(){
         global $conf;
@@ -52,9 +53,10 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
         
         $this->data_x += $this->getConf('data-x');
         $this->data_y += $this->getConf('data-y');
+        $this->data_z += $this->getConf('data-z');
         
         $this->doc .= "<div class='".($level == 1 ? '' : 'slide ')."step' ";
-        $this->doc .= "data-x='$this->data_x' data-y='$this->data_y' ";
+        $this->doc .= "data-x='$this->data_x' data-y='$this->data_y' data-z='$this->data_z' ";
         $this->doc .= "dir='".$lang['direction']."' >";
         $this->doc .= "<h$level>$text</h$level>";
     }
