@@ -13,3 +13,12 @@ pre {
     padding: 0.5em;
     margin: 0.25em 0 0.5em 0.5em;
 }
+
+/* edited from impress.css */
+h1, h2, h3, h4, h5, h6{
+    margin: 0.5em 0;
+    padding: 0;
+    border: 0;
+    font-size: 125%;
+    vertical-align: baseline;
+}
