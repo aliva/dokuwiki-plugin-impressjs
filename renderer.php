@@ -18,13 +18,14 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     
     public function document_start(){
         global $conf;
+        global $ID;
         
         $this->doc .= '<!DOCTYPE html>
 <html lang="'.$conf['lang'].'">
 <head>
     <meta name="viewport" content="width=1024" />
     <meta charset="utf-8" />
-    <title>'.hsc($title).'</title>
+    <title>'.tpl_pagetitle($ID, true).'</title>
                 
     <meta name="generator" content="impress.js" />
     <meta name="version" content="impress.js ab44798b081997319f4207dabbb052736acfc512" />
