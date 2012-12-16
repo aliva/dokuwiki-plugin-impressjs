@@ -16,10 +16,15 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     private $data_x = 0;
     private $data_y = 0;
     private $data_z = 0;
+    private $tpl;
+    private $base;
     
     public function document_start(){
         global $conf;
         global $ID;
+        
+        $this->base = DOKU_BASE.'lib/plugins/impressjs/tpl/';
+        $this->tpl  = $this->getConf('template');
         
         $this->doc .= '<!DOCTYPE html>
 <html lang="'.$conf['lang'].'">
@@ -32,8 +37,8 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     <meta name="version" content="impress.js ab44798b081997319f4207dabbb052736acfc512" />
                 
     <link rel="stylesheet" href="'.DOKU_BASE.'lib/styles/screen.css" type="text/css" media="screen" />
-    <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress.css" rel="stylesheet" />
-    <link href="'.DOKU_BASE.'lib/plugins/impressjs/impress-extra.css" rel="stylesheet" />
+    <link href="'.$this->base.$this->tpl.'/impress.css" rel="stylesheet" />
+    <link href="'.$this->base.$this->tpl.'/impress-extra.css" rel="stylesheet" />
 </head>
 <body>
     <div id="impress">';
@@ -41,7 +46,7 @@ class renderer_plugin_impressjs extends Doku_Renderer_xhtml {
     
     public function document_end(){
         $this->doc .= '</div>
-        <script src="'.DOKU_BASE.'lib/plugins/impressjs/impress.js"></script>
+        <script src="'.$this->base.$this->tpl.'/impress.js"></script>
         <script>impress().init();</script></body></html>';
     }
     public function section_close() {
