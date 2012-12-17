@@ -1,0 +1,7 @@
+base   impressjs
+author Ali Vakilzade
+email  ali.vakilzade@gmail.com
+date   2012-12-17
+name   impress.js Slideshow plugin
+desc   Create slideshow presentations from a DokuWiki page using impress.js
+url    http://www.dokuwiki.org/plugin:impressjs
